@@ -6,20 +6,26 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/"><i class="fa-solid fa-house"></i> Inicio</a>
                 </li>
                 <li class="nav-item" *ngIf="isLogged">
                     <a class="nav-link" routerLink="/lista"><i class="fa-regular fa-rectangle-list"></i> Lista</a>
                 </li>
-                <li class="nav-item" *ngIf="!isLogged">
-                    <a class="nav-link" routerLink="/login"><i class="fas fa-sign-in-alt"></i> Iniciar sesion</a>
-                </li>
-                <li class="nav-item" *ngIf="isLogged" (click)="onLogOut()">
-                    <a class="nav-link" style="cursor: pointer;"><i class="fa-solid fa-door-open"></i> Cerrar sesion</a>
+                <li class="nav-item" *ngIf="isAdmin">
+                    <a class="nav-link" routerLink="/nuevo"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
                 </li>
             </ul>
+            <form class="d-flex" role="search">
+                <button *ngIf="!isLogged" class="btn btn-outline-success my-2 my-sm-0" routerLink="/login">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar sesion
+                </button>
+                <button *ngIf="isLogged" class="btn btn-outline-danger my-2 my-sm-0" (click)="onLogOut()">
+                    <i class="fas fa-sign-in-alt"></i> 
+                    <i class="fa-solid fa-door-open"></i> Cerrar sesion
+                </button>
+            </form>
         </div>
     </div>
 </nav>

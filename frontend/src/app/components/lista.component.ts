@@ -12,19 +12,13 @@ import { TokenService } from '../service/token.service';
 export class ListaComponent implements OnInit {
 
   productos: Producto[] = [];
-  roles!: string[];
   isAdmin = false;
 
   constructor(private productoService: ProductoService, private toastr: ToastrService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.cargar();
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach(rol => {
-      if (rol === 'ROLE_ADMIN') {
-        this.isAdmin = true;
-      }
-    });
+    this.isAdmin = this.tokenService.isAdmin();
   }
 
   cargar(): void {
