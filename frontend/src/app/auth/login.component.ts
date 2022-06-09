@@ -24,8 +24,7 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
-  ngOnInit() {
-    
+  ngOnInit() {    
   }
 
   onLogin(): void {

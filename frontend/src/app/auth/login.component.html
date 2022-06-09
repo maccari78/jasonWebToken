@@ -1,5 +1,4 @@
 <app-menu></app-menu>
-
 <div class="container d-flex justify-content-center">
     <div class="card">
         <div class="card-header">
@@ -10,7 +9,6 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/registro">Crear cuenta</a>
                 </li>
-
             </ul>
         </div>
         <div class="card-body">
@@ -26,7 +24,7 @@
                         required>
                 </div>
                 <div class="form-group d-grid mt-3">
-                    <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">
+                    <button class="btn btn-outline-success btn-block" [disabled]="!f.valid" type="submit">
                         <i class="fas fa-sign-in-alt"></i> Iniciar sesión
                     </button>
                 </div>

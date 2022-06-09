@@ -22,4 +22,9 @@ export class AuthService {
   public login(login: Login): Observable<JwtDto> {
     return this.httpClient.post<JwtDto>(this.authURL + 'login', login);
   }
+
+  public refresh(dto:JwtDto): Observable<JwtDto> {
+    return this.httpClient.post<JwtDto>(this.authURL + 'refresh', dto);
+    // Minuto 09:18
+  }
 }
