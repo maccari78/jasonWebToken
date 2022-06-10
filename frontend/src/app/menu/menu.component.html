@@ -14,15 +14,14 @@
                     <a class="nav-link" routerLink="/lista"><i class="fa-regular fa-rectangle-list"></i> Lista</a>
                 </li>
                 <li class="nav-item" *ngIf="isAdmin">
-                    <a class="nav-link" routerLink="/nuevo"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+                    <a class="nav-link" routerLink="/nuevo"><i class="fa-solid fa-circle-plus"></i> Nuevo producto</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0" style="position: absolute; right: 15px;">
                 <button *ngIf="!isLogged" class="btn btn-outline-success my-2 my-sm-0" routerLink="/login"
                     type="submit">
                     <i class="fas fa-sign-in-alt"></i> Iniciar Sesión</button>
                 <button *ngIf="isLogged" class="btn btn-outline-danger my-2 my-sm-0" (click)="onLogOut()" type="reset">
-                    <i class="fas fa-sign-in-alt"></i>
                     <i class="fas fa-door-open"></i> Cerrar Sesión</button>
             </form>
         </div>

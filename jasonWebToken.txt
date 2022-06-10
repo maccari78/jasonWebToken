@@ -1,0 +1,5 @@
+1. CRUD
+2. Autenticacion JWT
+3. Update + Refresh TOKEN
+4. Swagger
+

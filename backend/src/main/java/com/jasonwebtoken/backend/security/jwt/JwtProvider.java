@@ -19,15 +19,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JwtProvider {
-    
+
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
-    
+
     @Value("${jwt.secret}")
     private String secret;
-    
+
     @Value("${jwt.expiration}")
     private int expiration;
-    
+
     public String generateToken(Authentication authentication) {
         UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
         List<String> roles = usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
@@ -39,11 +39,11 @@ public class JwtProvider {
                 .signWith(SignatureAlgorithm.HS512, secret.getBytes())
                 .compact();
     }
-    
+
     public String getNombreUsuarioFromToken(String token) {
         return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody().getSubject();
     }
-    
+
     public boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token);
@@ -60,13 +60,13 @@ public class JwtProvider {
             logger.error("Fail en la firma");
         }
         return false;
-    }    
-    
+    }
+
     public String refreshToken(JwtDto jwtDto) throws ParseException, java.text.ParseException {
         JWT jwt = JWTParser.parse(jwtDto.getToken());
         JWTClaimsSet claims = jwt.getJWTClaimsSet();
         String nombreUsuario = claims.getSubject();
-        List<String> roles = (List<String>)claims.getClaim("roles");
+        List<String> roles = (List<String>) claims.getClaim("roles");
 
         return Jwts.builder()
                 .setSubject(nombreUsuario)
