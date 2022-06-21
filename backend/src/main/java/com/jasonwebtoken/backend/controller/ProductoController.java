@@ -4,6 +4,7 @@ import com.jasonwebtoken.backend.dto.Mensaje;
 import com.jasonwebtoken.backend.dto.ProductoDto;
 import com.jasonwebtoken.backend.entity.Producto;
 import com.jasonwebtoken.backend.service.ProductoService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import org.springframework.security.access.prepost.PreAuthorize;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/producto")
@@ -21,12 +23,14 @@ public class ProductoController {
     @Autowired
     ProductoService productoService;
     
+    @ApiOperation("Muestra una lista de productos")
     @GetMapping("/lista")
     public ResponseEntity<List<Producto>> list() {
         List<Producto> list = productoService.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
+    @ApiIgnore
     @GetMapping("/detail/{id}")
     public ResponseEntity<Producto> getById(@PathVariable("id") int id) {
         if(!productoService.existsById(id))
@@ -35,6 +39,7 @@ public class ProductoController {
         return new ResponseEntity(producto, HttpStatus.OK);
     }
     
+    @ApiIgnore
     @GetMapping("/detailname/{nombre}")
     public ResponseEntity<Producto> getByNombre(@PathVariable("nombre") String nombre) {
         if(!productoService.existsByNombre(nombre))
