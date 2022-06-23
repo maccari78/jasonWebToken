@@ -1,5 +1,6 @@
 1. CRUD
-2. Autenticacion JWT
+2. JWT Authentication
 3. Update + Refresh TOKEN
 4. Swagger
+5. Forgot password
 
