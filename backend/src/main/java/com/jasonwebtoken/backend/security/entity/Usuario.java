@@ -28,6 +28,7 @@ public class Usuario {
     private String email;
     @NotNull
     private String password;
+    private String forgotPassword;
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
@@ -82,6 +83,14 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getForgotPassword() {
+        return forgotPassword;
+    }
+
+    public void setForgotPassword(String forgotPassword) {
+        this.forgotPassword = forgotPassword;
     }
 
     public Set<Rol> getRoles() {
