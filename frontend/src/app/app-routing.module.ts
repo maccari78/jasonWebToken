@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login.component';
 import { RegistroComponent } from './auth/registro.component';
+import { ChangePasswordComponent } from './changepassword/change-password.component';
+import { SendEmailComponent } from './changepassword/send-email.component';
 import { DetalleComponent } from './components/detalle.component';
 import { EditarComponent } from './components/editar.component';
 import { ListaComponent } from './components/lista.component';
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'login', component: LoginComponent, canActivate:[LoginGuard] },
   { path: 'registro', component: RegistroComponent, canActivate:[LoginGuard] },
+  { path: 'sendemail', component: SendEmailComponent, canActivate:[LoginGuard] },
+  { path: 'change-password/:forgotPassword', component: ChangePasswordComponent, canActivate:[LoginGuard] },
   { path: 'lista', component: ListaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'detalle/:id', component: DetalleComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'nuevo', component: NuevoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },

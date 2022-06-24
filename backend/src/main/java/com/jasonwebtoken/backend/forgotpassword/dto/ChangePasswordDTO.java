@@ -9,7 +9,7 @@ public class ChangePasswordDTO {
     @NotBlank
     private String confirmPassword;
     @NotBlank
-    private String tokenPassword;
+    private String forgotPassword;
 
     public ChangePasswordDTO() {
     }
@@ -17,7 +17,7 @@ public class ChangePasswordDTO {
     public ChangePasswordDTO(String password, String confirmPassword, String tokenPassword) {
         this.password = password;
         this.confirmPassword = confirmPassword;
-        this.tokenPassword = tokenPassword;
+        this.forgotPassword = forgotPassword;
     }
 
     public String getPassword() {
@@ -36,13 +36,15 @@ public class ChangePasswordDTO {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getTokenPassword() {
-        return tokenPassword;
+    public String getForgotPassword() {
+        return forgotPassword;
     }
 
-    public void setTokenPassword(String tokenPassword) {
-        this.tokenPassword = tokenPassword;
+    public void setForgotPassword(String forgotPassword) {
+        this.forgotPassword = forgotPassword;
     }
+
+    
     
     
 }

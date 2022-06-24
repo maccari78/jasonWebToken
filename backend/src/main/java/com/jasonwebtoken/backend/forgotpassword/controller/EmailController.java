@@ -66,7 +66,7 @@ public class EmailController {
         if (dto.getPassword().equals(dto.getConfirmPassword())) {
             return new ResponseEntity(new Mensaje("Las contraseñas no coinciden"), HttpStatus.BAD_REQUEST);
         }
-        Optional<Usuario> usuarioOpt = usuarioService.getByForgotPassword(dto.getTokenPassword());
+        Optional<Usuario> usuarioOpt = usuarioService.getByForgotPassword(dto.getForgotPassword());
         if (!usuarioOpt.isPresent()) {
             return new ResponseEntity(new Mensaje("No existe ningún usuario con esas credenciales"), HttpStatus.NOT_FOUND);
         }
