@@ -14,7 +14,7 @@ public class ChangePasswordDTO {
     public ChangePasswordDTO() {
     }
 
-    public ChangePasswordDTO(String password, String confirmPassword, String tokenPassword) {
+    public ChangePasswordDTO(String password, String confirmPassword, String forgotPassword) {
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.forgotPassword = forgotPassword;
@@ -43,8 +43,5 @@ public class ChangePasswordDTO {
     public void setForgotPassword(String forgotPassword) {
         this.forgotPassword = forgotPassword;
     }
-
-    
-    
     
 }

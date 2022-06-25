@@ -58,18 +58,15 @@ public class EmailController {
         return new ResponseEntity(new Mensaje("Te hemos enviado un correo"), HttpStatus.OK);
     }
 
-    @PostMapping("change-password")
+    @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordDTO dto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
-        }
-        if (dto.getPassword().equals(dto.getConfirmPassword())) {
+        if (!dto.getPassword().equals(dto.getConfirmPassword()))
             return new ResponseEntity(new Mensaje("Las contraseñas no coinciden"), HttpStatus.BAD_REQUEST);
-        }
         Optional<Usuario> usuarioOpt = usuarioService.getByForgotPassword(dto.getForgotPassword());
-        if (!usuarioOpt.isPresent()) {
+        if (!usuarioOpt.isPresent())
             return new ResponseEntity(new Mensaje("No existe ningún usuario con esas credenciales"), HttpStatus.NOT_FOUND);
-        }
         Usuario usuario = usuarioOpt.get();
         String newPassword = passwordEncoder.encode(dto.getPassword());
         usuario.setPassword(newPassword);

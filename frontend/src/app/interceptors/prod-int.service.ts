@@ -26,7 +26,6 @@ export class ProdIntService implements HttpInterceptor {
 
     intReq = this.addToken(req, token);
 
-    // Conflicto con err:HttpErrorResponse cuando meto el return dentro del if, si lo pongo tambien fuera y quito el tostr se soluciona
     return next.handle(intReq).pipe(catchError((err: HttpErrorResponse) => {
       if (err.status === 401) {
         const dto: JwtDto = new JwtDto(this.tokenService.getToken());
