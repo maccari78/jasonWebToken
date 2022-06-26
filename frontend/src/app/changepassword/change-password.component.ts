@@ -28,24 +28,24 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onChangePassword(): void {
-    if(this.password !==this.confirmPassword){
-      this.toastrService.error('Las contraseñas no coiciden','FAIL',{
-        timeOut:3000,positionClass:'toast-top-center'
+    if (this.password !== this.confirmPassword) {
+      this.toastrService.error('Las contraseñas no coiciden', 'FAIL', {
+        timeOut: 3000, positionClass: 'toast-top-center'
       });
       return;
     }
     this.forgotPassword = this.activatedRoute.snapshot.params['forgotPassword'];
     this.dto = new ChangePasswordDTO(this.password, this.confirmPassword, this.forgotPassword);
     this.forgotPasswordService.changepassword(this.dto).subscribe(
-      data=>{
-        this.toastrService.success(data.mensaje,'OK',{
-          timeOut:3000,positionClass:'toast-top-center'
+      data => {
+        this.toastrService.success(data.mensaje, 'OK', {
+          timeOut: 3000, positionClass: 'toast-top-center'
         });
         this.router.navigate(['/login']);
       },
-      err=>{
-        this.toastrService.error(err.error.mensaje,'FAIL',{
-          timeOut:3000,positionClass:'toast-top-center'
+      err => {
+        this.toastrService.error(err.error.mensaje, 'FAIL', {
+          timeOut: 3000, positionClass: 'toast-top-center'
         });
       }
     );

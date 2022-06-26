@@ -17,7 +17,7 @@ public class EmailValuesDTO {
         this.subject = subject;
         this.userName = userName;
         this.forgotPassword = forgotPassword;
-    }    
+    }
 
     public String getMailFrom() {
         return mailFrom;
@@ -58,6 +58,6 @@ public class EmailValuesDTO {
     public void setForgotPassword(String forgotPassword) {
         this.forgotPassword = forgotPassword;
     }
-
         
+    
 }

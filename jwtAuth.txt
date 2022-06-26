@@ -1,0 +1,12 @@
+1. CRUD
+2. JWT Authentication
+3. Update + Refresh TOKEN
+4. Swagger
+5. Forgot password
+
+Notes:
+http://localhost:4200/recover/ajsdfgjadhs.mbcvnuer.kjasdhfy
+
+spring.mail.password=ydoearhbeztfbrum
+
+http://localhost:4200/change-password/a09f4741-481e-4ab1-b280-7d20f38b7e78

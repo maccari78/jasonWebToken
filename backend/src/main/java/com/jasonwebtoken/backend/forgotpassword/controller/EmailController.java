@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/forgot-password")
+@CrossOrigin
 public class EmailController {
 
     @Autowired
@@ -39,20 +41,19 @@ public class EmailController {
     private static final String subject = "Cambio de Contraseña";
 
     @PostMapping("/send-email")
-    public ResponseEntity<?> sendEmailTemplate(@RequestBody EmailValuesDTO dto) {
+    public ResponseEntity<?> sendEmail(@RequestBody EmailValuesDTO dto) {
         Optional<Usuario> usuarioOpt = usuarioService.getByNombreUsuarioOrEmail(dto.getMailTo());
-        if (!usuarioOpt.isPresent()) {
+        if (!usuarioOpt.isPresent())
             return new ResponseEntity(new Mensaje("No existe ningún usuario con esas credenciales"), HttpStatus.NOT_FOUND);
-        }
         Usuario usuario = usuarioOpt.get();
         dto.setMailFrom(mailFrom);
         dto.setMailTo(usuario.getEmail());
         dto.setSubject(subject);
         dto.setUserName(usuario.getNombreUsuario());
         UUID uuid = UUID.randomUUID();
-        String tokenPassword = uuid.toString();
-        dto.setForgotPassword(tokenPassword);
-        usuario.setForgotPassword(tokenPassword);
+        String forgotPassword = uuid.toString();
+        dto.setForgotPassword(forgotPassword);
+        usuario.setForgotPassword(forgotPassword);
         usuarioService.save(usuario);
         emailService.sendEmail(dto);
         return new ResponseEntity(new Mensaje("Te hemos enviado un correo"), HttpStatus.OK);

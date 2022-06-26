@@ -17,6 +17,7 @@ public class ThymeleafConfig {
         resolver.setCharacterEncoding("UTF-8");
         resolver.setOrder(1);
         resolver.setCheckExistence(true);
+        
         return resolver;
     }
 }

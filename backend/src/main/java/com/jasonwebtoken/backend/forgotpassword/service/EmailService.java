@@ -27,9 +27,7 @@ public class EmailService {
     private String urlFront;
 
     public void sendEmail(EmailValuesDTO dto) {
-
         MimeMessage message = javaMailSender.createMimeMessage();
-
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             Context context = new Context();
@@ -47,4 +45,5 @@ public class EmailService {
             e.printStackTrace();
         }
     }
+    
 }
